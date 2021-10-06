@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public float speed = 3.5f;
     void Start()
     {
         //take current position = new position (0,0,0)
@@ -11,6 +12,6 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime);
+        transform.Translate(Vector3.right * speed * Time.deltaTime);
     }
 }
