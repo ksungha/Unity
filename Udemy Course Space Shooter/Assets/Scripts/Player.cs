@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -15,37 +16,27 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        CalculateMovement();
+    }
+    void CalculateMovement()
+    {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
         transform.Translate(direction * _speed * Time.deltaTime);
 
-        //adding player bounds
-        //if player position on y is > 0
-        //y position = 0
-        //else if y pos is < -3.8f
-        //y pos = -3.8f
+        //vertical bounds
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 0), 0);
 
-        if (transform.position.y >= 0)
+        //horizontal bounds
+        if (transform.position.x >= 11.3f)
         {
-            transform.position = new Vector3(transform.position.x, 0, 0);
+            transform.position = new Vector3(-11.3f, transform.position.y, 0);
         }
-        else if (transform.position.y <= -3.8f)
+        else if (transform.position.x <= -11.3f)
         {
-            transform.position = new Vector3(transform.position.x, -3.8f, 0);
-        }
-        //if player on the x > 11
-        //x pos -11
-        //else if player on the x is less than -11
-        //x pos = 11
-        if (transform.position.x >= 10)
-        {
-            transform.position = new Vector3(-10, transform.position.y, 0);
-        }
-        else if (transform.position.x <= -10)
-        {
-            transform.position = new Vector3(10, transform.position.y, 0);
+            transform.position = new Vector3(11.3f, transform.position.y, 0);
         }
     }
 }
