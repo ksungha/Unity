@@ -1,15 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
-using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 5f;
+    [SerializeField]
+    private GameObject _laserPrefab;
     void Start()
     {
         transform.position = new Vector3(0, 0, 0);
@@ -17,6 +16,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         CalculateMovement();
+        //if i hit the space key
+        //spawn laser
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+        }
     }
     void CalculateMovement()
     {
