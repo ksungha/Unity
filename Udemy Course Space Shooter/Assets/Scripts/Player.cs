@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     private float _fireRate = 0.5f;
     private float _canFire = -1.0f;
 
-    Vector3 offset = new Vector3(0f, 0.8f, 0f);
 
     void Start()
     {
@@ -23,13 +22,9 @@ public class Player : MonoBehaviour
     void Update()
     {
         CalculateMovement();
-        //if i hit the space key
-        //spawn laser
-
-        if (Input.GetKeyDown(KeyCode.Space) && (Time.time > _canFire))
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
         {
-            _canFire = Time.time + _fireRate;
-            Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity);
+            FireLaser();
         }
     }
     void CalculateMovement()
@@ -54,5 +49,12 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(11.3f, transform.position.y, 0);
         }
+    }
+
+    void FireLaser()
+    {
+        Vector3 offset = new Vector3(0f, 0.8f, 0f);
+        _canFire = Time.time + _fireRate;
+        Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity);
     }
 }
