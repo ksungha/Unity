@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Transactions;
 using UnityEngine;
-using UnityEngine.Assertions.Comparers;
-using UnityEngine.ParticleSystemJobs;
 
 public class Laser : MonoBehaviour
 {
@@ -20,5 +17,10 @@ public class Laser : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.up * Time.deltaTime * _laserSpeed);
+        //if y >= 8 destroy model
+        if (transform.position.y >= 8)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
