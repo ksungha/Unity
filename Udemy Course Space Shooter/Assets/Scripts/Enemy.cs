@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,7 +8,7 @@ public class Enemy : MonoBehaviour
     private float _enemySpeed = 4.0f;
     void Start()
     {
-        transform.position = new Vector3(0, 7.55f, 0);
+        transform.position = new Vector3(Random.Range(-9, 9), 7.55f, 0);
     }
 
     void Update()
