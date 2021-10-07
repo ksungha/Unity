@@ -13,11 +13,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        //Move down 4m a sec
         transform.Translate(Vector3.down * _enemySpeed * Time.deltaTime);
-
-        //if bottom of screen
-        //respawn at top with random x position
 
         if (transform.position.y <= -5.5)
         {
@@ -29,7 +25,6 @@ public class Enemy : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            //damage player
             Player player = other.transform.GetComponent<Player>();
 
             if (player != null)
@@ -45,9 +40,5 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject);
 
         }
-
-        //if other is laser
-        //destroy laser 
-        //destroy us
     }
 }
