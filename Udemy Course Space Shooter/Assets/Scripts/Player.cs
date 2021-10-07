@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _fireRate = 0.5f;
     private float _canFire = -1.0f;
+    [SerializeField]
+    private int _lives = 3;
 
 
     void Start()
@@ -56,5 +59,14 @@ public class Player : MonoBehaviour
         Vector3 offset = new Vector3(0f, 0.8f, 0f);
         _canFire = Time.time + _fireRate;
         Instantiate(_laserPrefab, transform.position + offset, Quaternion.identity);
+    }
+
+    public void Damage()
+    {
+        _lives--;
+        if (_lives < 1)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
